@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --navy: oklch(24% 0.045 258);
+  --navy-soft: oklch(36% 0.06 258);
+  --gold: oklch(74% 0.1 88);
+  --gold-light: oklch(85% 0.07 90);
+  --cream: oklch(98% 0.012 95);
+  --cream-soft: oklch(95% 0.022 92);
+  --whatsapp: #25d366;
+  --noir: #0a1324;
+  --deep: #070e1c;
+  --noir-card: #15223d;
+  --foreground: oklch(22% 0.02 260);
+  --muted-foreground: oklch(52% 0.02 260);
+  --card: oklch(100% 0 0);
+  --border: oklch(24% 0.045 258 / 0.12);
+  --good: #1a6e4b;
+  --good-soft: #e0f2ea;
+  --bad: #ad2318;
+  --bad-soft: #fbe6e4;
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-soft);
+  --color-whatsapp: var(--whatsapp);
+  --color-noir: var(--noir);
+  --color-deep: var(--deep);
+  --color-noir-card: var(--noir-card);
+  --color-background: var(--cream);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+
+  --radius-2xl: 22px;
+  --radius-3xl: 26px;
+
+  --shadow-soft: 0 18px 40px -18px oklch(24% 0.045 258 / 0.35);
+  --shadow-lift: 0 30px 70px -30px oklch(24% 0.045 258 / 0.55);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.rise {
+  animation: rise-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wa-pulse {
+  animation: wa-ring 3.6s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wa-ring {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  40%,
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .wa-pulse {
+    opacity: 0;
+    animation: none;
+  }
+}

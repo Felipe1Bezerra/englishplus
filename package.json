@@ -1,0 +1,19 @@
+{
+  "name": "english-plus",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently --names api,web --prefix-colors cyan,magenta \"npm run dev -w api\" \"npm run dev -w web\"",
+    "build": "npm run build -w api && npm run build -w web",
+    "start": "concurrently --names api,web --prefix-colors cyan,magenta \"npm run start -w api\" \"npm run start -w web\"",
+    "typecheck": "npm run typecheck -w api && npx -w web tsc --noEmit",
+    "lint": "npm run lint -w web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
